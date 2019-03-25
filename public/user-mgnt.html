@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="/css/main.css">
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+    </head>
+      <body>
+        <section id="sideMenu">
+          <nav style="background-color:#302D43;">
+            <img src="logo1.png" width="210px" height=210px" style="margin-left:35px; margin-top:-90px; border-radius:10%"></img>
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            <a href="user-mgnt.html" class="active"><i class="fas fa-users-cog"></i>Manage Users</a>
+            <a href="file-mgnt.html"><i class="fas fa-folder-open"></i>File Management</a>
+            <a href="events-table.html"><i class="fas fa-calendar-alt"></i>Events Management</a>
+  <!--      <a href="#"><i class="fas fa-sticky-note"></i>Something</a>
+            <a href="#"><i class="fas fa-cog"></i>Settings</a>  -->
+          </nav>
+        </section>
+
+        <header>
+          <div class="quick-search">
+            <i class="fas fa-search"></i>
+            <input type="text" name="" value=""></input>
+          </div>
+          <div class="user-access">
+          <!--  <a href="#addUserModal" class="btn modal-trigger yellow">+ Add</a> -->
+            <a href="#" class="notification">
+              <i class="far fa-bell"></i>
+              <span class="circle">3</span>
+            </a>
+            <a href="#">
+              <div class="user-img"></div>
+              <i class="far fa-caret-square-down"></i>
+            </a>
+          </div>
+        </header>
+
+        <section id="content-area" style="margin-left:290px;">
+          <div class="heading">
+            <h1>Dashboard</h1>
+            <p>Welcome to the User Management section</p>
+             <a class="btn-floating btn-medium waves-effect waves-light red right modal-trigger" data-target="addUserModal"><i class="material-icons">add</i></a>
+          </div>
+
+          <!-- Add user modal -->
+      			<div id="addUserModal" class="modal modal-fixed-footer">
+      				<div class="modal-content">
+      					<h4><i style="vertical-align:middle; font-size:2em;" class="material-icons left">add</i>Add new user</h4>
+      					<p>Fill out the necessary information to add a new user. You can add additional information later.</p>
+      					<hr />
+      					<br />
+      					<form>
+                  <div class="row">
+                    <div class="col s8">
+                      <ul class="collection hoverable transparent">
+                        <li class="collection-item red-text">Only <span>&emsp;<img style="vertical-align:middle;" src="images/logo-gmail-with-text.png" />&emsp;</span> addresses are accepted.</li>
+                      </ul>
+                    </div>
+                  </div>
+      						<div class="row">
+      							<div class="col s6 input-field">
+      								<i class="material-icons prefix">account_circle</i>
+      								<input placeholder="Wilbun" id="addUserFirstName" type="text" class="validate" onkeypress="verifyAddUserFormDataIntegrity();" onchange="verifyAddUserFormDataIntegrity();" onblur="verifyAddUserFormDataIntegrity();" required>
+      								<label for="addUserFirstName">First Name</label>
+      								<span class="helper-text" data-error="This is a required field" data-success="Perfect.">Can't really go wrong here, now can you?</span>
+      							</div>
+      							<div class="col s6 input-field">
+      								<i class="material-icons prefix">account_circle</i>
+      								<input placeholder="Rodrigues" id="addUserLastName" type="text" class="validate" onkeypress="verifyAddUserFormDataIntegrity();" onchange="verifyAddUserFormDataIntegrity();" onblur="verifyAddUserFormDataIntegrity();" required>
+      								<label for="addUserLastName">Last Name</label>
+      								<span class="helper-text" data-error="This is a required field" data-success="Perfect.">Nor here either</span>
+      							</div>
+      						</div>
+      						<div class="row">
+      							<div class="col s6 input-field">
+      								<i class="material-icons prefix">email</i>
+      								<input placeholder="wilbunfrank69@gmail.com" id="addUserEmail" type="email" class="validate" onkeypress="verifyAddUserFormDataIntegrity();" onchange="verifyAddUserFormDataIntegrity();" onblur="verifyAddUserFormDataIntegrity();" pattern="[a-z0-9._%+-]+@gmail.com|[a-z0-9._%+-]+@sotf.in" required>
+      								<label for="addUserEmail">Email Address</label>
+      								<span class="helper-text" data-error="Please enter a valid gmail address" data-success="Perfect.">We will use this to identify the user</span>
+      							</div>
+      							<div class="col s6 input-field">
+      								<i class="material-icons prefix">featured_play_list</i>
+      								<input placeholder="16BCA41050" data-length="11" id="addUserRegNo" type="text" class="validate" onkeypress="verifyAddUserFormDataIntegrity();" onchange="verifyAddUserFormDataIntegrity();" onblur="verifyAddUserFormDataIntegrity();" pattern="/^\d{2}$)+(^\w{3}$)|(^\w{4}$)+(^\d{5}$)+/gm" required>
+      								<label for="addUserRegNo">Registration Number</label>
+      								<span class="helper-text" data-error="Please enter a valid registration number" data-success="Perfect.">Enter user's registration number</span>
+      							</div>
+      						</div>
+                  <div class="row">
+                    <div class="offset-s1">
+                      <i class="material-icons prefix"  style="float:left; position:absolute; padding-top:5px; left:115px; display:inline-block;">security</i>
+                      <div class="col s6 offset-s2">
+                      <select class="browser-default"  id="addUserType" type="text" class="validate" style="display:inline-block;">
+                        <option value="1">Principal</option>
+                        <option value="2">HOD</option>
+                        <option value="3">Teacher</option>
+                        <option value="4">Student</option>
+                      </select>
+              <!--     <input placeholder="Principal HOD Teacher Student" id="addUserAccessLevel" type="text" class="validate">
+                      <label for="updateUserAdditionalInformation">Access Level</label> -->
+                      <span class="helper-text" data-error="Seriously?" data-success="Perfect.">Select User Type</span>
+                    </div>
+                  </div>
+                </div>
+      					</form>
+      				</div>
+      				<div class="modal-footer">
+              	  <a class="modal-close waves-effect waves btn red hoverable"><i class="material-icons left">not_interested</i>Cancel</a>
+      					  <a id="addUserButton" class="modal-close waves-effect waves btn green darken-4 hoverable"><i class="material-icons left">add</i>Add user</a>
+      				</div>
+      			</div>
+
+        <!-- Update user modal -->
+        <div id="updateUserModal" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4><i style="vertical-align:middle; font-size:2em;" class="material-icons left">add</i>Update / Modify Details</h4>
+            <p>Happy Editing!!!</p>
+            <hr />
+            <br />
+            <form>
+              <div class="row">
+                <div class="col s6 input-field">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input placeholder="Wilbun" id="updateUserFirstName" type="text" class="validate" onkeypress="verifyUpdateUserFormDataIntegrity();" onchange="verifyUpdateUserFormDataIntegrity();" onblur="verifyUpdateUserFormDataIntegrity();" required>
+                  <label for="updateUserFirstName">First Name</label>
+                  <span class="helper-text" data-error="This is a required field" data-success="Perfect.">Can't really go wrong here, now can you?</span>
+                </div>
+                <div class="col s6 input-field">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input placeholder="Rodrigues" id="updateUserLastName" type="text" class="validate" onkeypress="verifyUpdateUserFormDataIntegrity();" onchange="verifyUpdateUserFormDataIntegrity();" onblur="verifyUpdateUserFormDataIntegrity();" required>
+                  <label for="updateUserLastName">Last Name</label>
+                  <span class="helper-text" data-error="This is a required field" data-success="Perfect.">Nor here either</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6 input-field">
+                  <i class="material-icons prefix">email</i>
+                  <input placeholder="wilbunfrank69@gmail.com" id="updateUserEmail" type="email" class="validate" onkeypress="verifyUpdateUserFormDataIntegrity();" onchange="verifyUpdateUserFormDataIntegrity();" onblur="verifyUpdateUserFormDataIntegrity();" pattern="[a-z0-9._%+-]+@gmail.com|[a-z0-9._%+-]+@sotf.in" required>
+                  <label for="updateUserEmail">Email Address</label>
+                  <span class="helper-text" data-error="Please enter a valid gmail address" data-success="Perfect.">We will use this to identify the user</span>
+                </div>
+                <div class="col s6 input-field">
+                  <i class="material-icons prefix">featured_play_list</i>
+                  <input placeholder="16BCA41050" data-length="11" id="updateUserRegNo" type="text" class="validate" onkeypress="verifyUpdateUserFormDataIntegrity();" onchange="verifyUpdateUserFormDataIntegrity();" onblur="verifyUpdateUserFormDataIntegrity();" pattern="/^\d{2}$)+(^\w{3}$)|(^\w{4}$)+(^\d{5}$)+/gm" required>
+                  <label for="updateUserRegNo">Registration Number</label>
+                  <span class="helper-text" data-error="Please enter a valid registration number" data-success="Perfect.">Enter user's registration number</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="offset-s1">
+                  <i class="material-icons prefix"  style="float:left; position:absolute; padding-top:5px; left:115px; display:inline-block;">security</i>
+                  <div class="col s6 offset-s2">
+                  <select class="browser-default"  id="updateUserType" type="text" class="validate" style="display:inline-block;">
+                    <option value="1">Principal</option>
+                    <option value="2">HOD</option>
+                    <option value="3">Teacher</option>
+                    <option value="4">Student</option>
+                  </select>
+          <!--     <input placeholder="Principal HOD Teacher Student" id="addUserAccessLevel" type="text" class="validate">
+                  <label for="updateUserAdditionalInformation">Access Level</label> -->
+                  <span class="helper-text" data-error="Seriously?" data-success="Perfect.">Select User Type</span>
+                </div>
+              </div>
+            </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a class="modal-close waves-effect waves btn red hoverable"><i class="material-icons left">not_interested</i>Cancel</a>
+            <a id="updateUserButton" class="modal-close waves-effect waves btn green darken-4 hoverable"><i class="material-icons left">update</i>Update user</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="card white" style="padding:1em;">
+		        <div class="card-content">
+          <table id="userTable" class="highlight centered striped responsive-table">
+            <thead>
+              <tr>
+                <th style="cursor:default; pointer-events:none;" onclick="orderUserListBy(this,'first_name');" class="tooltipped orderer" data-tooltip="Order list by first name" data-position="bottom">First Name<span class="ordererSign">&emsp;<b>&uarr;</b></span></th>
+                <th style="cursor:pointer; pointer-events:auto;" onclick="orderUserListBy(this,'last_name');" class="tooltipped orderer" data-tooltip="Order list by last name" data-position="bottom">Last Name<span style="display:none;" class="ordererSign">&emsp;<b>&uarr;</b></span></th>
+                <th style="cursor:pointer; pointer-events:auto;" onclick="orderUserListBy(this,'email');" class="tooltipped orderer" data-tooltip="Order list by email address" data-position="bottom">Email Address<span style="display:none;" class="ordererSign">&emsp;<b>&uarr;</b></span></th>
+                <th style="cursor:pointer; pointer-events:auto;" onclick="orderUserListBy(this,'phone');" class="tooltipped orderer" data-tooltip="Order list by registration number" data-position="bottom">Registration Number<span style="display:none;" class="ordererSign">&emsp;<b>&uarr;</b></span></th>
+                <th style="cursor:pointer; pointer-events:auto;" onclick="orderUserListBy(this,'access_level');" class="tooltipped orderer" data-tooltip="Order list by access level" data-position="bottom">Access Level<span style="display:none;" class="ordererSign">&emsp;<b>&uarr;</b></span></th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="userTableRows"></tbody>
+          </table>
+        </div>
+      </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js" defer></script>
+        <script type="text/javascript" defer>
+
+          var gdb = '';
+          var docId = '';
+
+        function performUserAction(action, elementId){
+          var email = document.getElementById(elementId).innerHTML;
+          switch(action){
+            case 'edit': document.getElementById('updateUserEmail').value = email;
+                         gdb.collection('users').where('email', '==', email).get().then(function(querySnapshot){
+                           querySnapshot.forEach((doc)=>{
+                             document.getElementById('updateUserFirstName').value = doc.data().first_name;
+                             document.getElementById('updateUserLastName').value = doc.data().last_name;
+                             document.getElementById('updateUserRegNo').value = doc.data().reg_no;
+                             switch (doc.data().user_type) {
+                               case 'principal':
+                                  document.getElementById("updateUserType").options.selectedIndex = 0;
+                                   break;
+                               case 'hod':
+                                  document.getElementById("updateUserType").options.selectedIndex = 1;
+                                   break;
+                               case 'teacher':
+                                  document.getElementById("updateUserType").options.selectedIndex = 2;
+                                   break;
+                               case 'student':
+                                  document.getElementById("updateUserType").options.selectedIndex = 3;
+                                   break;
+                               default:
+                                  document.getElementById("updateUserType").options.selectedIndex = 0;
+                                  break;
+                             }
+                           });
+                         });
+                         break;
+            default: break;
+          }
+        }
+
+        function verifyAddUserFormDataIntegrity(){
+          var flag = true;
+
+          if(document.getElementById('addUserFirstName').value == '') flag =false;
+          if(flag){
+            document.getElementById('addUserButton').classList.remove('disabled');
+          }
+          else{
+            document.getElementById('addUserButton').classList.add('disabled');
+          }
+
+          if(document.getElementById('addUserLastName').value == '') flag =false;
+
+        }
+
+        window.onload = function(){
+          var elems = document.querySelectorAll('.modal');
+          var instances = M.Modal.init(elems);
+          firebase.initializeApp({
+            apiKey: "AIzaSyCv6dArbh3dSmcOztL1E3kNtb85o9e1oSI",
+            authDomain: "sjc-event-archive.firebaseapp.com",
+            databaseURL: "https://sjc-event-archive.firebaseio.com",
+            projectId: "sjc-event-archive",
+            storageBucket: "sjc-event-archive.appspot.com",
+            messagingSenderId: "72479731108"
+          });
+
+            var db = firebase.firestore();
+            gdb = db;
+            document.getElementById('addUserButton').onclick = function(){
+              db.collection("users").add({
+                  first_name: document.getElementById('addUserFirstName').value,
+                  last_name: document.getElementById('addUserLastName').value,
+                  email: document.getElementById('addUserEmail').value,
+                  reg_no: document.getElementById('addUserRegNo').value,
+                  user_type: document.getElementById("addUserType").options[document.getElementById("addUserType").selectedIndex].text.toLowerCase()
+              }).then(function(){
+                alert('user added');
+                location.reload();
+              });
+            }
+
+            document.getElementById('updateUserButton').onclick = function(){
+              db.collection("users").doc(docId).update({
+                  first_name: document.getElementById('updateUserFirstName').value,
+                  last_name: document.getElementById('updateUserLastName').value,
+                  email: document.getElementById('updateUserEmail').value,
+                  reg_no: document.getElementById('updateUserRegNo').value,
+                  user_type: document.getElementById("updateUserType").options[document.getElementById("updateUserType").selectedIndex].text.toLowerCase()
+              }).then(function(){
+                alert('user updated');
+                location.reload();
+              });
+            }
+
+            db.collection("users").get().then(function(querySnapshot){
+              var i=0;
+                querySnapshot.forEach((doc)=>{
+                  docId = doc.id;
+                  document.getElementById('userTableRows').innerHTML += '<tr><td>'+doc.data().first_name+'</td><td>'+doc.data().last_name+'</td><td id="'+i+'">'+doc.data().email+'</td><td>'+doc.data().reg_no+'</td><td>'+doc.data().user_type.charAt(0).toUpperCase()+doc.data().user_type.slice(1)+'</td><td><a onclick="performUserAction(\'edit\', '+i+');" class="hoverable class-activate-on-hover btn-floating waves-effect waves-light blue darken-2 tooltipped modal-trigger" data-tooltip="Edit" data-position="bottom" href="#updateUserModal"><i  class="material-icons">edit</i></a></td></tr>';
+                  i++;
+                });
+            });
+
+        }
+      </script>
+    </body>
+  </html>

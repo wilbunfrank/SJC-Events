@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="/css/main.css">
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+    </head>
+      <body>
+        <section id="sideMenu">
+          <nav style="background-color:#302D43;">
+            <img src="logo1.png" width="210px" height=210px" style="margin-left:35px; margin-top:-90px; border-radius:10%"></img>
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            <a href="user-mgnt.html"><i class="fas fa-users-cog"></i>Manage Users</a>
+            <a href="file-mgnt.html" class="active"><i class="fas fa-folder-open"></i>File Management</a>
+            <a href="events-table.html"><i class="fas fa-calendar-alt" ></i>Events Management</a>
+  <!--      <a href="#"><i class="fas fa-sticky-note"></i>Something</a>
+            <a href="#"><i class="fas fa-cog"></i>Settings</a> -->
+          </nav>
+        </section>
+
+        <header>
+          <div class="quick-search">
+            <i class="fas fa-search"></i>
+            <input type="text" name="" value=""></input>
+          </div>
+          <div class="user-access">
+          <!--  <a href="#addUserModal" class="btn modal-trigger yellow">+ Add</a> -->
+            <a href="#" class="notification">
+              <i class="far fa-bell"></i>
+              <span class="circle">3</span>
+            </a>
+            <a href="#">
+              <div class="user-img"></div>
+              <i class="far fa-caret-square-down"></i>
+            </a>
+          </div>
+        </header>
+
+        <section id="content-area" style="margin-left:290px;">
+          <div class="heading">
+            <div class="row">
+              <div class="col 7">
+                <h1>Dashboard</h1>
+                <p>Welcome to the File Management section</p>
+              </div>
+                <div class="col 2 offset-s4">
+                  <a id="uploadFileButton" href="upload.html" class="waves-effect waves-light btn-large hoverable right"><i class="material-icons right ">cloud_upload</i>Upload a File</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card white" style="padding:1em;">
+  		        <div class="card-content">
+            <table id="userTable" class="highlight centered striped responsive-table">
+              <thead>
+                <tr>
+                  <th style="cursor:default; pointer-events:none;" onclick="orderUserListBy(this,'file_name');" class="tooltipped orderer" data-tooltip="Order list by file name" data-position="bottom">Name<span class="ordererSign">&emsp;<b>&uarr;</b></span></th>
+                  <th style="cursor:pointer; pointer-events:auto;" onclick="orderUserListBy(this,'file_date');" class="tooltipped orderer" data-tooltip="Order list by file date" data-position="bottom">Date<span style="display:none;" class="ordererSign">&emsp;<b>&uarr;</b></span></th>
+                  <th style="cursor:pointer; pointer-events:auto;" onclick="orderUserListBy(this,'file_type');" class="tooltipped orderer" data-tooltip="Order list by file size" data-position="bottom">Size<span style="display:none;" class="ordererSign">&emsp;<b>&uarr;</b></span></th>
+                  <th style="cursor:pointer; pointer-events:auto;" onclick="orderUserListBy(this,'file_acclvl');" class="tooltipped orderer" data-tooltip="Order list by access level" data-position="bottom">Access Level<span style="display:none;" class="ordererSign">&emsp;<b>&uarr;</b></span></th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="fileTableRows"></tbody>
+            </table>
+          </div>
+          </div>
+          </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+        <script type="text/javascript" src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js" defer></script>
+        <script type="text/javascript" src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js" defer></script>
+        <script type="text/javascript" defer>
+        var gdb = '';
+        var docId = '';
+        var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        // Get date string from timestamp
+function generateDateString(date){
+	date = date.toDate();
+	return month[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+}
+
+      function performFileAction(action, id){
+        switch(action){
+          case 'rename': gdb.collection('file_mgnt').where('file_name', '==', document.getElementById(id).innerHTML).get().then(function(querySnapshot){
+                querySnapshot.forEach((doc)=>{
+                  gdb.collection('file_mgnt').doc(doc.id).update({file_name: document.getElementById(id).innerHTML}).then(function(){alert('File renamed successfully!'); location.reload();});
+                });
+          });
+          break;
+          case 'delete': gdb.collection('file_mgnt').where('file_name', '==', document.getElementById(id).innerHTML).get().then(function(querySnapshot){
+                          querySnapshot.forEach((doc)=>{
+                            gdb.collection('file_mgnt').doc(doc.id).delete().then(function(){alert('File deleted successfully!'); location.reload();});
+                });
+          });
+        }
+      }
+
+      window.onload = function(){
+        firebase.initializeApp({
+          apiKey: "AIzaSyCv6dArbh3dSmcOztL1E3kNtb85o9e1oSI",
+          authDomain: "sjc-event-archive.firebaseapp.com",
+          databaseURL: "https://sjc-event-archive.firebaseio.com",
+          projectId: "sjc-event-archive",
+          storageBucket: "sjc-event-archive.appspot.com",
+          messagingSenderId: "72479731108"
+        });
+
+          var db = firebase.firestore();
+          gdb = db;
+
+          db.collection("file_mgnt").get().then(function(querySnapshot){
+            var i=500;
+              querySnapshot.forEach((doc)=>{
+                docId = doc.id;
+                document.getElementById('fileTableRows').innerHTML += '<tr><td id="'+i+'">'+doc.data().file_name+'</td><td>'+generateDateString(doc.data().file_date)+'</td><td id="'+i+'">'+Math.round((doc.data().file_size/(1024*1024)) * 100) / 100+' MB </td><td>'+doc.data().file_type+'</td><td><a onclick="performFileAction(\'rename\', '+i+');" class="hoverable class-activate-on-hover btn-floating waves-effect waves-light blue darken-2 tooltipped modal-trigger" data-tooltip="Rename this file" data-position="bottom" href="#renameFileModal"><i  class="material-icons">edit</i></a>&emsp;<a onclick="performFileAction(\'delete\', '+i+');" class="hoverable class-activate-on-hover btn-floating waves-effect waves-light red darken-2 tooltipped" data-tooltip="Delete this file" data-position="bottom" href="#"><i  class="material-icons">delete</i></a></td></tr>';
+                i++;
+              });
+          });
+
+      }
+    </script>
+      </script>
+    </body>
+  </html>

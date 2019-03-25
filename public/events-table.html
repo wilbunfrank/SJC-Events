@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="/css/main.css">
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+    </head>
+      <body>
+        <section id="sideMenu">
+          <nav style="background-color:#302D43;">
+            <img src="logo1.png" width="210px" height=210px" style="margin-left:35px; margin-top:-90px; border-radius:10%"></img>
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            <a href="user-mgnt.html"><i class="fas fa-users-cog"></i>Manage Users</a>
+            <a href="file-mgnt.html"><i class="fas fa-folder-open"></i>File Management</a>
+            <a href="events-table.html" class="active"><i class="fas fa-calendar-alt" ></i>Events Management</a>
+      <!--      <a href="#" style="display:none"><i class="fas fa-sticky-note"></i>Something</a>
+            <a href="#"><i class="fas fa-cog"></i>Settings</a> -->
+          </nav>
+        </section>
+
+        <header>
+          <div class="quick-search">
+            <i class="fas fa-search"></i>
+            <input type="text" name="" value=""></input>
+          </div>
+          <div class="user-access">
+          <!--  <a href="#addUserModal" class="btn modal-trigger yellow">+ Add</a> -->
+            <a href="#" class="notification">
+              <i class="far fa-bell"></i>
+              <span class="circle">3</span>
+            </a>
+            <a href="#">
+              <div class="user-img"></div>
+              <i class="far fa-caret-square-down"></i>
+            </a>
+          </div>
+        </header>
+
+        <section id="content-area" style="margin-left:290px;">
+          <div class="heading">
+            <h1>Dashboard</h1>
+            <p>Welcome to the Events Management section</p>
+          </div>
+
+        <div class="row">
+          <div class="col s9">
+          <div class="card white" style="padding:1em;">
+		        <div class="card-content">
+            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTGKDmsXDLRz3DyNYY1WiLVAnDc6ERtqVmK_WVtJKp-K5Z01jAwCqEQXuw3EjNBAJgwzBuPcNiTvgnP/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
+              width="650px" height="320px"
+            ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="col s3">
+          <ul class="collapsible white">
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">plus_one</i>
+                Add an Event
+                </div>
+              <div class="collapsible-body"><p><a target="_blank" href="https://docs.google.com/spreadsheets/d/1t9TChIEQyd0aHtB5EX0WtPwryMy3s8yuAQvXo9w0UZY/edit?usp=sharing">Take Me Away</a></p></div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">edit</i>
+                Edit an Event
+                <span class="badge">1</span></div>
+              <div class="collapsible-body"><p><a target="_blank" href="https://docs.google.com/spreadsheets/d/1t9TChIEQyd0aHtB5EX0WtPwryMy3s8yuAQvXo9w0UZY/edit?usp=sharing">Some changes are for the better</a></p></div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">visibility</i>
+                View Overall Events
+                <span class="badge"></span></div>
+              <div class="collapsible-body"><p><a target="_blank" href="events.html">Quickway to check if your event has been added</a></p></div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">view_carousel</i>
+                View Events Page
+                <span class="badge"></span></div>
+              <div class="collapsible-body"><p><a target="_blank" href="viewer.html">Check out what the page looks like.</a></p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+        <script type="text/javascript" defer>
+        window.onload = function(){
+          var elems = document.querySelectorAll('.modal');
+          var instances = M.Modal.init(elems);
+          var elems2 = document.querySelectorAll('.collapsible');
+          var instances2 = M.Collapsible.init(elems2);
+        }
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Load Materialize CSS asynchronously -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="none" onload="if(media!='screen,projection')media='screen,projection'">
+		<!-- Load Material Icons -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="none" onload="if(media!='screen,projection')media='screen,projection'">
+
+		<!-- Basic meta tags -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!-- Set the shortcut icon -->
+		<link rel="shortcut icon" type="image/png" href="favicon.png">
+		<!-- Let browser know website is optimized for mobile -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Progressive Web App meta tags -->
+		<link rel="manifest" href="manifest.json">
+		<meta name="theme-color" content="#D0D0D0">
+		<meta name="Description" content="sjc.event file dump">
+		<!--Title-->
+		<title>SJC Spaces | File Store</title>
+		<style>
+			html{
+				font-display: fallback !important;
+			}
+			body {
+				display: flex;
+				min-height: 100vh;
+				flex-direction: column;
+				background-image: url("https://wallpaperplay.com/walls/full/0/5/4/231750.jpg");
+				background-color: #D0D0D0;
+				color: #0044FF;
+			}
+
+			main {
+				flex: 1 0 auto;
+			}
+			a{
+				color: #0044FF;
+			}
+			a:hover{
+				text-decoration: underline;
+			}
+			.page-footer{
+				background-color: #0044FF;
+				padding-top: 0px;
+			}
+			.page-footer .footer-copyright{
+				color: #D0D0D0;
+				font-weight: bold;
+			}
+			.btn-large{
+				background-color: #0044FF;
+				color: #D0D0D0;
+				margin-left: 3em;
+				font-weight: bold;
+				font-size: 1.5em;
+			}
+			.btn-large:hover{
+				background-color: #0044FF;
+				color: #D0D0D0;
+				margin-left: 3em;
+				font-weight: bold;
+				font-size: 1.5em;
+			}
+			.bounce {
+				-moz-animation: bounce 2s infinite;
+				-webkit-animation: bounce 2s infinite;
+				animation: bounce 2s infinite;
+			}
+			@keyframes bounce {
+				0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+				40% {transform: translateY(-30px);}
+				60% {transform: translateY(-15px);}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div class="row" style="margin-top:-30px;">
+				<div id="titleContent" class="col s6">
+					<h2>SJC Blueprints | Events</h2>
+					<h5>It is Together that we make it all possible.</h5>
+				</div>
+			</div>
+			<div id="section2" class="row" style="padding-top:10em;"></div>
+		</main>
+		<footer class="page-footer">
+			<div class="footer-copyright">
+				<div class="container">&copy; <span id="footerYear"></span> St.Joseph's College of Arts & Science</div>
+			</div>
+		</footer>
+		<!-- Load scripts -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" defer></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+		<script type="text/javascript" src="https://spreadsheets.google.com/feeds/cells/1t9TChIEQyd0aHtB5EX0WtPwryMy3s8yuAQvXo9w0UZY/1/public/values?alt=json-in-script&callback=eventsData" defer></script>
+		<script type="text/javascript" defer>
+
+			/* Global variables */
+
+			var  evOrganizer = []; var  evName = []; var  evType = []; var  evTags = []; var  evDateFrom = []; var evDateTo = [];
+			var  evTimeFrom = []; var evTimeTo = []; var evVenue = []; var evHead = [];var evEmail = [];var evContact = []; var evDesc = [];
+			var  evVolunteers = []; var evWinners = [];var evCredits = []; var evComments = [];
+			var evImageURLList = [];
+			var evWebURLList = [];
+			var evSheetIdList = [];
+
+
+			/* Scope-free function definitions */
+
+			function appendGridCard(id, title, description, imageLink, webLink, dateFrom){
+				document.getElementById('section2').innerHTML += '<div id="'+id+'" class="col s3"><div class="card grey darken-4"><div class="card-image"><img class="materialboxed" style="width:320px; object-fit:cover;" src="'+imageLink+'"><span class="card-title">'+title+'</span><a href="'+webLink+'" target="_blank" class="btn-floating btn-large halfway-fab waves-effect waves-light red"><i class="material-icons">open_in_new</i></a></div><div class="card-content"><p><br />'+description+'</p><p>'+dateFrom+'</p></div></div>';
+			}
+
+			function eventsData(data){
+				for(var i=19; i<data.feed.entry.length; i+=19){
+					evOrganizer.push(data.feed.entry[i].gs$cell.$t);
+					evName.push(data.feed.entry[i+1].gs$cell.$t);
+					evType.push(data.feed.entry[i+2].gs$cell.$t);
+					evTags.push(data.feed.entry[i+3].gs$cell.$t);
+					evDateFrom.push(data.feed.entry[i+4].gs$cell.$t);
+					evDateTo.push(data.feed.entry[i+5].gs$cell.$t);
+					evTimeFrom.push(data.feed.entry[i+6].gs$cell.$t);
+					evTimeTo.push(data.feed.entry[i+7].gs$cell.$t);
+					evVenue.push(data.feed.entry[i+8].gs$cell.$t);
+					evHead.push(data.feed.entry[i+9].gs$cell.$t);
+					evEmail.push(data.feed.entry[i+10].gs$cell.$t);
+					evContact.push(data.feed.entry[i+11].gs$cell.$t);
+					evDesc.push(data.feed.entry[i+12].gs$cell.$t);
+					evVolunteers.push(data.feed.entry[i+13].gs$cell.$t);
+					evWinners.push(data.feed.entry[i+14].gs$cell.$t);
+					evCredits.push(data.feed.entry[i+15].gs$cell.$t);
+					evComments.push(data.feed.entry[i+16].gs$cell.$t);
+					evImageURLList.push(data.feed.entry[i+17].gs$cell.$t);
+					evWebURLList.push(data.feed.entry[i+17].gs$cell.$t);
+					evSheetIdList.push(data.feed.entry[i+18].gs$cell.$t);
+				}
+			}
+
+			window.onload = function(){
+
+				/* Set footer year */
+				document.getElementById("footerYear").innerHTML = new Date().getFullYear();
+
+				/* Initialize MaterialBoxed */
+				$('.materialboxed').materialbox();
+
+				setTimeout(function(){
+					for(var i=0; i<evOrganizer.length; i++){
+						appendGridCard(i, evName[i], evDesc[i], evImageURLList[i], evWebURLList[i], evDateFrom[i]);
+
+						/* Reinitialize MaterialBoxed */
+						$('.materialboxed').materialbox();
+					}
+				},3000);
+			}
+		</script>
+		<noscript>Your browser is not using javascript.</noscript>
+	</body>
+</html>
