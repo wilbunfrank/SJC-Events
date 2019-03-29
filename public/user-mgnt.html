@@ -294,7 +294,7 @@
               var i=0;
                 querySnapshot.forEach((doc)=>{
                   docId = doc.id;
-                  document.getElementById('userTableRows').innerHTML += '<tr><td>'+doc.data().first_name+'</td><td>'+doc.data().last_name+'</td><td id="'+i+'">'+doc.data().email+'</td><td>'+doc.data().reg_no+'</td><td>'+doc.data().user_type.charAt(0).toUpperCase()+doc.data().user_type.slice(1)+'</td><td><a onclick="performUserAction(\'edit\', '+i+');" class="hoverable class-activate-on-hover btn-floating waves-effect waves-light blue darken-2 tooltipped modal-trigger" data-tooltip="Edit" data-position="bottom" href="#updateUserModal"><i  class="material-icons">edit</i></a></td></tr>';
+                  document.getElementById('userTableRows').innerHTML += '<tr><td>'+doc.data().first_name+'</td><td>'+doc.data().last_name+'</td><td id="'+i+'">'+doc.data().email+'</td><td>'+doc.data().reg_no+'</td><td>'+doc.data().user_type.toUpperCase()+'</td><td><a onclick="performUserAction(\'edit\', '+i+');" class="hoverable class-activate-on-hover btn-floating waves-effect waves-light blue darken-2 tooltipped modal-trigger" data-tooltip="Edit" data-position="bottom" href="#updateUserModal"><i  class="material-icons">edit</i></a></td></tr>';
                   i++;
                 });
             });
