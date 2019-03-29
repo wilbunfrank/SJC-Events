@@ -108,7 +108,7 @@
 			/* Scope-free function definitions */
 
 			function appendGridCard(id, title, description, imageLink, webLink, dateFrom){
-				document.getElementById('section2').innerHTML += '<div id="'+id+'" class="col s3"><div class="card grey darken-4"><div class="card-image"><img class="materialboxed" style="width:320px; object-fit:cover;" src="'+imageLink+'"><span class="card-title">'+title+'</span><a href="'+webLink+'" target="_blank" class="btn-floating btn-large halfway-fab waves-effect waves-light red"><i class="material-icons">open_in_new</i></a></div><div class="card-content"><p><br />'+description+'</p><p>'+dateFrom+'</p></div></div>';
+				document.getElementById('section2').innerHTML += '<div id="'+id+'" class="col s3"><div class="card grey darken-4"><div class="card-image"><img class="materialboxed" style="width:320px; object-fit:cover;" src="'+imageLink+'"><span class="card-title">'+title+'</span><a href="viewer.html?sheetId='+webLink+'&eventName='+title+'" target="_blank" class="btn-floating btn-large halfway-fab waves-effect waves-light red"><i class="material-icons">open_in_new</i></a></div><div class="card-content"><p><br />'+description+'</p><p>'+dateFrom+'</p></div></div>';
 			}
 
 			function eventsData(data){
@@ -146,7 +146,7 @@
 
 				setTimeout(function(){
 					for(var i=0; i<evOrganizer.length; i++){
-						appendGridCard(i, evName[i], evDesc[i], evImageURLList[i], evWebURLList[i], evDateFrom[i]);
+						appendGridCard(i, evName[i], evDesc[i], evImageURLList[i], evSheetIdList[i], evDateFrom[i]);
 
 						/* Reinitialize MaterialBoxed */
 						$('.materialboxed').materialbox();
